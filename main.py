@@ -17,9 +17,6 @@ class Deck:
 		self.cards = []
 		self.cards_remaining = 51
 
-	def no_cards_left(self):
-		return len(self.cards) == 0
-
 	def card_dealt(self):
 		self.cards_remaining -= 1
 
@@ -44,6 +41,7 @@ def main(deck):
 			card = Card(suit[i], color[1], None, face[k])
 			deck.cards.append(card)
 
+	# user gameplay
 	user_count = 0
 	for i in range(len(deck.cards)):
 		card = deck.cards[randint(0, deck.cards_remaining)]
