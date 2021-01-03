@@ -30,7 +30,7 @@ def main(deck):
 			card = Card(suit[i], color[0], j)
 			deck.cards.append(card)
 			
-		for k in range(3):
+		for k in range(4):
 			card = Card(suit[i], color[1], None, face[k])
 			deck.cards.append(card)
 
@@ -40,7 +40,7 @@ def main(deck):
 			card = Card(suit[i], color[1], j)
 			deck.cards.append(card)
 		
-		for k in range(3):
+		for k in range(4):
 			card = Card(suit[i], color[1], None, face[k])
 			deck.cards.append(card)
 
