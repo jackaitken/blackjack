@@ -1,5 +1,4 @@
 from random import randint
-import keyboard
 
 suit = ["Hearts", "Diamonds", "Clubs", "Spades"]
 color = ["Red", "Black"]
@@ -43,29 +42,40 @@ def main(deck):
 
 	# user gameplay
 	user_count = 0
+	print("\n")
+	print(f"Type \"h\" to hit or \"s\" to stay", end="\n")
+	print("\n")
 	for i in range(len(deck.cards)):
 		card = deck.cards[randint(0, deck.cards_remaining)]
 		deck.cards.remove(card)
 		deck.card_dealt()
 		if card.face:
-			user_count += 10
-			print(f"{card.face} of {card.suit}")
-			if user_count > 21:
-				print(f"Oh no! {user_count}. You bust!")
-				break
-			elif user_count == 21:
-				print("21! You win!")
+			if card.face == "Ace":
+				print(f"{card.face} of {card.suit}")
+				print(f"Type \"1\" or \"11\"", end="\n")
+				user_input = input()
+				user_count += int(user_input)
+			else:
+				print(f"{card.face} of {card.suit}")
+				user_count += 10
 
 		else:
 			user_count += card.number
 			print(f"{card.number} of {card.suit}")
-			if user_count > 21:
-				print(f"Oh no! {user_count}. You bust!")
-				break
-			elif user_count == 21:
-				print("21! You win!")
 
-		print(f"Type \"h\" to hit or \"s\" to stay", end="\n")
+		if user_count > 21:
+			print(f"Oh no! {user_count}. You bust!")
+			print("\n", "\n",)			
+			print("New Game!")
+			user_count = 0
+			continue
+
+		elif user_count == 21:
+			print("21! You win!")
+			print("\n", "\n",)
+			print("New Game!")
+			user_count = 0
+			continue
 
 		user_input = input()
 
@@ -75,7 +85,6 @@ def main(deck):
 		else:
 			print("Thanks for playing!")
 			break
-
 
 deck = Deck()
 main(deck)
